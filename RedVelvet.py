@@ -1,14 +1,7 @@
 from subprocess import call
-import datetime
-import os
+
 class RedVelvet:
-    #    InputLog = None
-    #    OutputLog = None
-    #    ErrorLog = None
-    def GetTimeStamp(self):
-        now = datetime.datetime.now()
-        Time = [ now.year, now.month, now.day, now.hour, now.minute,now.second]
-        return Time
+''' This class acts as a tool used by Pyllumina to use the velvet DNA assembler'''
     def MakeDirectory(self,ArgsIn):
         ArgsIn_Size = len(ArgsIn)
         Temp = ''
@@ -28,13 +21,6 @@ class RedVelvet:
         Temp = ['ln', '-s', source]
         call(Temp, stdin=self.InputLog, stdout=self.OutputLog, stderr=self.ErrorLog, shell=False)
         return 1
-    def CreateLog(self,FileName):
-        TStr = [str(i) for i in self.INIT_TIME]
-        TStr.append(FileName)
-        TStr.insert(0, self.Curpath)
-        FileName = ''.join(TStr)
-        call(['touch',FileName])
-        return open(FileName,'a')
     def N50Score(self, contigs):
         #Complete N50 assembly score code
         SigmaContigs = sum(contigs)

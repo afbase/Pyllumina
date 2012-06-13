@@ -11,12 +11,22 @@
 		22AE17DE15893FD600924C8A /* Metasimian.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Metasimian.py; sourceTree = "<group>"; };
 		22AE17DF1589450500924C8A /* Pyllumina.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Pyllumina.py; sourceTree = "<group>"; };
 		22AE17E01589452200924C8A /* Logger.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Logger.py; sourceTree = "<group>"; };
+		22AE17E1158949E000924C8A /* errormodel-50bp.mconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "errormodel-50bp.mconf"; sourceTree = "<group>"; };
+		22AE17E2158949E000924C8A /* errormodel-75bp.mconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "errormodel-75bp.mconf"; sourceTree = "<group>"; };
+		22AE17E3158949E000924C8A /* errormodel-100bp.mconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "errormodel-100bp.mconf"; sourceTree = "<group>"; };
+		22AE17E4158949E000924C8A /* make_reads_454.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = make_reads_454.sh; sourceTree = "<group>"; };
+		22AE17E5158949E000924C8A /* make_reads_Illumina.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = make_reads_Illumina.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		22AE17D015893DF100924C8A = {
 			isa = PBXGroup;
 			children = (
+				22AE17E1158949E000924C8A /* errormodel-50bp.mconf */,
+				22AE17E2158949E000924C8A /* errormodel-75bp.mconf */,
+				22AE17E3158949E000924C8A /* errormodel-100bp.mconf */,
+				22AE17E4158949E000924C8A /* make_reads_454.sh */,
+				22AE17E5158949E000924C8A /* make_reads_Illumina.sh */,
 				22AE17DE15893FD600924C8A /* Metasimian.py */,
 				22AE17DD15893E1F00924C8A /* RedVelvet.py */,
 				22AE17DF1589450500924C8A /* Pyllumina.py */,
