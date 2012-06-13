@@ -3,26 +3,42 @@ from Metasimian import Metasimian
 import datetime
 import os
 class Pyllumina:
-    def GetTimeStamp(self):
-        now = datetime.datetime.now()
-        Time = [ now.year, now.month, now.day, now.hour, now.minute,now.second]
-        return Time
-    def CreateLog(self,FileName):
-        TStr = [str(i) for i in self.INIT_TIME]
-        TStr.append(FileName)
-        TStr.insert(0, self.Curpath)
-        FileName = ''.join(TStr)
-        call(['touch',FileName])
-        return open(FileName,'a')
     def SetFastaFile(self,filename):
-        self.FastaFile = open(filename,'r')
+        filenameType = type(filename)
+        if filenameType is str:
+            #self.FastaFile = open(filename,'r')
+            self.FastaFileName = filename
+        elif filenameType is list:
+            #self.FastaFile = [open(file,'r') for file in filename]
+            self.FastaFileName = filename
+        else:
+            Logr.ErrorMsg('SetFastaFile() Error, filename is not a fasta file')
+    def RunPyllumina(self):
+        try:
+            #first we need to check if all parameters are set or not
+            if FastaFileName == None:
+                Logr.ErrorMsg('No Fasta File Set')
+            if 
+        finally:
+            #Close files
+            self.ErrorLog.close()
+            self.OutputLog.close()
+            self.InputLog.close()
+            
     def __init__(self):
         self.INIT_TIME          = self.GetTimeStamp()            #INIT_TIME must come first
         self.Curpath            = os.path.abspath(os.curdir)
         self.Curpath            += '/'
-        self.ErrorLog           = self.CreateLog('Error.Log')     
-        self.OutputLog          = self.CreateLog('Output.Log')   
-        self.InputLog           = self.CreateLog('Input.Log') 
+        self.Logr               = Logger()
+        self.ErrorLog           = Logr.CreateLog('Error.Log')     
+        self.OutputLog          = Logr.CreateLog('Output.Log')   
+        self.InputLog           = Logr.CreateLog('Input.Log')
+        Logr.ErrorLog           = self.ErrorLog
+        Logr.InputLog           = self.InputLog
+        Logr.OutputLog          = self.OutputLog
         self.Metasim            = Metasimian(ErrorLog,OutputLog,InputLog)
         self.Velvet             = RedVelvet(ErrorLog,OutputLog,InputLog)
-        self.FastaFile          = None
+        
+        #self.FastaFile          = None
+        self.FastaFileName      = None
+        self.
