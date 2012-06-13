@@ -3,6 +3,8 @@ from Metasimian import Metasimian
 import datetime
 import os
 class Pyllumina:
+    def SetReads(self,ReadNum):
+        Self.ReadSize = ReadNum
     def SetFastaFile(self,filename):
         filenameType = type(filename)
         if filenameType is str:
@@ -13,12 +15,21 @@ class Pyllumina:
             self.FastaFileName = filename
         else:
             Logr.ErrorMsg('SetFastaFile() Error, filename is not a fasta file')
+    def CheckSettings(self):
+        if self.FastaFileName == None:
+            Logr.ErrorMsg('No Fasta File Set')
+            return False
+        if self.ReadSize == None:
+            Logr.ErrorMsg('No ReadSize Set; please set the  number  of  reads  or  mate  pairs  generate')
+            return False
+        return True
     def RunPyllumina(self):
         try:
             #first we need to check if all parameters are set or not
-            if FastaFileName == None:
-                Logr.ErrorMsg('No Fasta File Set')
-            if 
+            if CheckSettings()==True:
+                continue
+            else:
+                Logr.ErrorMsg('RunPyllumina failed;  Settings were not set')
         finally:
             #Close files
             self.ErrorLog.close()
@@ -41,4 +52,5 @@ class Pyllumina:
         
         #self.FastaFile          = None
         self.FastaFileName      = None
-        self.
+        self.ReadSize           = None
+        self.MetaSimCommands    = []
