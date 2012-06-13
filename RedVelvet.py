@@ -56,13 +56,13 @@ class RedVelvet:
         MinContigLengthRange = [i for i in range(MinMinContigLength, MaxMinContigLength + 1, 1)]
     def SetPairedEndRange(self,MinPairedEndRange,MaxPairedEndRange):
         PairedEndRange = [i for i in range(MinPairedEndRange,MaxPairedEndRange + 1, 1)]
-    def __init__(self):
+    def __init__(self,ELog,OLog,ILog):
         self.Curpath = os.path.abspath(os.curdir)
         self.Curpath += '/'
         self.INIT_TIME = self.GetTimeStamp()            #INIT_TIME must come first
-        self.ErrorLog = self.CreateLog('Error.Log')     
-        self.OutputLog = self.CreateLog('Output.Log')   
-        self.InputLog = self.CreateLog('Input.Log')     
+        self.ErrorLog = ELog     
+        self.OutputLog = Olog  
+        self.InputLog = ILog     
         self.KmerRange = None                           
         self.ExpectedCoverageRange = None               
         self.CoverageCutoffRange = None                 

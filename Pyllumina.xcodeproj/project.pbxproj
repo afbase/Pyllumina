@@ -9,6 +9,8 @@
 /* Begin PBXFileReference section */
 		22AE17DD15893E1F00924C8A /* RedVelvet.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = RedVelvet.py; sourceTree = "<group>"; };
 		22AE17DE15893FD600924C8A /* Metasimian.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Metasimian.py; sourceTree = "<group>"; };
+		22AE17DF1589450500924C8A /* Pyllumina.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Pyllumina.py; sourceTree = "<group>"; };
+		22AE17E01589452200924C8A /* Logger.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Logger.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -17,6 +19,8 @@
 			children = (
 				22AE17DE15893FD600924C8A /* Metasimian.py */,
 				22AE17DD15893E1F00924C8A /* RedVelvet.py */,
+				22AE17DF1589450500924C8A /* Pyllumina.py */,
+				22AE17E01589452200924C8A /* Logger.py */,
 			);
 			sourceTree = "<group>";
 		};
