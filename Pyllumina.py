@@ -1,10 +1,11 @@
 from RedVelvet import RedVelvet
 from Metasimian import Metasimian
+from Logger import Logger
 import datetime
 import os
 class Pyllumina:
     def SetReads(self,ReadNum):
-        Self.ReadSize = ReadNum
+        self.ReadSize = ReadNum
     def SetFastaFile(self,filename):
         filenameType = type(filename)
         if filenameType is str:
@@ -14,42 +15,41 @@ class Pyllumina:
             #self.FastaFile = [open(file,'r') for file in filename]
             self.FastaFileName = filename
         else:
-            Logr.ErrorMsg('SetFastaFile() Error, filename is not a fasta file')
+            self.Logr.ErrorMsg('SetFastaFile() Error, filename is not a Fasta file')
+    def Set 
     def CheckSettings(self):
         if self.FastaFileName == None:
-            Logr.ErrorMsg('No Fasta File Set')
+            self.Logr.ErrorMsg('No Fasta File Set')
             return False
         if self.ReadSize == None:
-            Logr.ErrorMsg('No ReadSize Set; please set the  number  of  reads  or  mate  pairs  generate')
+            self.Logr.ErrorMsg('No ReadSize Set; please set the  number  of  reads  or  mate  pairs  generate')
             return False
         return True
     def RunPyllumina(self):
         try:
             #first we need to check if all parameters are set or not
-            if CheckSettings()==True:
+            if self.CheckSettings()==True:
                 continue
             else:
-                Logr.ErrorMsg('RunPyllumina failed;  Settings were not set')
+                self.Logr.ErrorMsg('RunPyllumina failed;  Settings were not set')
         finally:
             #Close files
             self.ErrorLog.close()
             self.OutputLog.close()
             self.InputLog.close()
-            
     def __init__(self):
         self.INIT_TIME          = self.GetTimeStamp()            #INIT_TIME must come first
         self.Curpath            = os.path.abspath(os.curdir)
         self.Curpath            += '/'
         self.Logr               = Logger()
-        self.ErrorLog           = Logr.CreateLog('Error.Log')     
-        self.OutputLog          = Logr.CreateLog('Output.Log')   
-        self.InputLog           = Logr.CreateLog('Input.Log')
-        Logr.ErrorLog           = self.ErrorLog
-        Logr.InputLog           = self.InputLog
-        Logr.OutputLog          = self.OutputLog
-        self.Metasim            = Metasimian(ErrorLog,OutputLog,InputLog)
-        self.Velvet             = RedVelvet(ErrorLog,OutputLog,InputLog)
-        
+        self.ErrorLog           = self.Logr.CreateLog('Error.Log')     
+        self.OutputLog          = self.Logr.CreateLog('Output.Log')   
+        self.InputLog           = self.Logr.CreateLog('Input.Log')
+        self.Logr.ErrorLog      = self.ErrorLog
+        self.Logr.InputLog      = self.InputLog
+        self.Logr.OutputLog     = self.OutputLog
+        self.Metasim            = Metasimian(self.ErrorLog,self.OutputLog,self.InputLog)
+        self.Velvet             = RedVelvet(self.ErrorLog,self.OutputLog,self.InputLog)
         #self.FastaFile          = None
         self.FastaFileName      = None
         self.ReadSize           = None

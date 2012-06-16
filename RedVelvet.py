@@ -1,7 +1,6 @@
 from subprocess import call
 
 class RedVelvet:
-''' This class acts as a tool used by Pyllumina to use the velvet DNA assembler'''
     def MakeDirectory(self,ArgsIn):
         ArgsIn_Size = len(ArgsIn)
         Temp = ''
