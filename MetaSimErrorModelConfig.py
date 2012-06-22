@@ -30,6 +30,7 @@ class MetaSimErrorModelConfig:
             self.Mconf = None
         else:#Sanger
             self.ModelSangerInit(Mean, Sigma, MatePairProb, StartErrorRate, EndErrorRate, InsertErrorRate, DeletionErrorRate)
+            
     def Model454Init(self,ExpectedReadLength, FlowCycleCount, MatePairProb, MatePairReadLength, RemoveLinkerSeq, MeanNegativeFlowSignal, SigmaNegativeFlowSignal, SignalSigmaWithRootMean, GenerateSignalTrace):
         self.SetExpectedReadLength( ExpectedReadLength )
         self.SetFlowCycleCount( FlowCycleCount )
@@ -40,6 +41,7 @@ class MetaSimErrorModelConfig:
         self.SetSigmaNegativeFlowSignal( SigmaNegativeFlowSignal )
         self.SetSignalSigmaWithRootMean( SignalSigmaWithRootMean )
         self.SetGenerateSignalTrace( GenerateSignalTrace )
+        
     def ModelSangerInit(self, ReadLengthDistribution , Mean, Sigma, MatePairProb, StartErrorRate, EndErrorRate, InsertErrorRate, DeletionErrorRate):
         self.SetReadLengthDistribution( ReadLengthDistribution )
         self.SetMean( Mean )
@@ -49,6 +51,7 @@ class MetaSimErrorModelConfig:
         self.SetEndErrorRate( EndErrorRate )
         self.SetInsertErrorRate( InsertErrorRate )
         self.SetDeletionErrorRate( DeletionErrorRate )
+        
     def SetReadLengthDistribution(self,ReadLengthDistribution ):
         self.ReadLengthDistribution = ReadLengthDistribution
     def SetMean(self,Mean ):
@@ -81,6 +84,7 @@ class MetaSimErrorModelConfig:
         self.SignalSigmaWithRootMean = SignalSigmaWithRootMean
     def SetGenerateSignalTrace(self,GenerateSignalTrace ):
         self.GenerateSignalTrace = GenerateSignalTrace
+        
     def GetReadLengthDistribution(self):
         return self.ReadLengthDistribution
     def GetMean(self):

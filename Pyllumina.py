@@ -36,7 +36,6 @@ class Pyllumina:
         self.MetaSimPrimary.Model = ErrorModel
         self.MetaSimSimulator = MetaSimSimulatorConfig()
         self.MetaSym = Metasimian(self.MetaSimPrimary,self.MetaSimSimulator)
-        self.MetaSym.
         
         #Expected Covereage -> Velvet
         #MinCutoff->Velvet

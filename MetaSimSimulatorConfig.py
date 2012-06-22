@@ -1,3 +1,4 @@
+import multiprocessing
 class MetaSimSimulatorConfig:
     def GetNumOfThreads(self):
         return self.NumOfThreads
@@ -11,6 +12,7 @@ class MetaSimSimulatorConfig:
         return self.UniformSequenceWeights
     def GetMergeAllToOneTaxonProfile(self):
         return self.MergeAllToOneTaxonProfile
+    
     def SetNumOfThreads(self,NumThreads):
         self.NumOfThreads = NumThreads
     def SetGenerateFastaOutput(self,GFO):
@@ -23,7 +25,8 @@ class MetaSimSimulatorConfig:
         self.UniformSequenceWeights = USW
     def SetMergeAllToOneTaxonProfile(self,MATOTP):
         self.MergeAllToOneTaxonProfile = MATOTP
-    def __init__(self,  NumOfThreads = None, GenerateFastaOutput = None, FastaOutputFileName = None, CompressOutput = None, UniformSequenceWeights = None, MergeAllToOneTaxonProfile = None):
+        
+    def __init__(self,  NumOfThreads = multiprocessing.cpu_count(), GenerateFastaOutput = True, FastaOutputFileName = None, CompressOutput = False, UniformSequenceWeights = False, MergeAllToOneTaxonProfile = False):
         self.SetNumOfThreads(NumOfThreads)
         self.SetGenerateFastaOutput(GenerateFastaOutput)
         self.SetFastaOutputFileName(FastaOutputFileName)

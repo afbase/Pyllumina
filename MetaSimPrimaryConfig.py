@@ -1,11 +1,12 @@
 class MetaSimPrimaryConfig:
-    def __init__(self,PresetName = None, NumberOfReads = None, Model = 'illumina', DNACloneDist = None, Mean = None, Sigma = None):
+    def __init__(self,PresetName = None, NumberOfReads = 100, Model = 'illumina', DNACloneDist = 'Normal', Mean = 100, Sigma = 13):
         self.SetPresetName(PresetName)
         self.SetNumberOfReads(NumberOfReads)
         self.SetModel(Model)
         self.SetDNACloneDist(DNACloneDist)
         self.SetMean(Mean)
         self.SetSigma(Sigma)
+        
     def SetPresetName(self, PreName):
         self.PresetName = PreName
     def SetNumberOfReads(self,Num):
@@ -18,6 +19,7 @@ class MetaSimPrimaryConfig:
         self.Mean = mu
     def SetSigma(self,funnyApple):
         self.Sigma = funnyApple
+        
     def GetPresetName(self):
         return self.PresetName
     def GetNumberOfReads(self):

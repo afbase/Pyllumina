@@ -5,6 +5,7 @@ class VelvetH:
         self.SetFileFormat(FileFormat)
         self.SetReadType(ReadType)
         self.SetFileName(FileName)
+        
     def SetOutputDirectory(self,OutputDirectory):
         self.OutputDirectory = OutputDirectory
     def SetHashLength(self,HashLength):
@@ -15,6 +16,7 @@ class VelvetH:
         self.ReadType = ReadType
     def SetFileName(self, FileName):
         self.FileName = FileName
+        
     def GetOutputDirectory(self,OutputDirectory):
         return self.OutputDirectory
     def GetHashLength(self,HashLength):
