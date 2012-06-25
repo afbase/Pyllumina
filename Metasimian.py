@@ -1,11 +1,21 @@
+from MetaSimErrorModelConfig import MetaSimErrorModelConfig
+from MetaSimSimulatorConfig import MetaSimSimulatorConfig
+from MetaSimPrimaryConfig import MetaSimPrimaryConfig
 from subprocess import call
 import datetime
 import os
+import multiprocessing
 class Metasimian:
-    def MetaSim_Call(self,ArgsIn):
-        ArgsIn.insert(0,'metasim')
-        call(ArgsIn, stdin=self.InputLog, stdout=self.OutputLog, stderr=self.ErrorLog, shell=False)
-        return 1 
-    def __init__(self):
+    def __init__(self,PrimaryConf = None
+                 ,SimulatorConf = None):
         self.Curpath = os.path.abspath(os.curdir)
         self.Curpath += '/'
+        self.Primary = PrimaryConf()
+        self.Simulator = SimulatorConf()
+        self.ErrorModel = MetaSimErrorModelConfig(self.Primary)
+    def SetPrimary(self,**kwargs):
+        self.Primary = MetaSimPrimaryConfig(**kwargs)
+    def SetErrorModel(self,**kwargs):
+        self.ErrorModel = MetaSimErrorModelConfig(**kwargs) 
+        
+    

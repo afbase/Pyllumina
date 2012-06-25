@@ -1,56 +1,42 @@
-from RedVelvet import RedVelvet
+from MetaSimSimulatorConfig import MetaSimSimulatorConfig
+from MetaSimPrimaryConfig import MetaSimPrimaryConfig
 from Metasimian import Metasimian
-import datetime
-import os
+from FastaSequence import *
 class Pyllumina:
-    def SetReads(self,ReadNum):
-        Self.ReadSize = ReadNum
-    def SetFastaFile(self,filename):
-        filenameType = type(filename)
-        if filenameType is str:
-            #self.FastaFile = open(filename,'r')
-            self.FastaFileName = filename
-        elif filenameType is list:
-            #self.FastaFile = [open(file,'r') for file in filename]
-            self.FastaFileName = filename
+    """
+    This class is designed to be the top-level class for all code.  The user should use only this class.
+    """
+    def FastaFileInputChecker(self,Input):
+        """
+        If Input is an array data structure, it returns 0, if Input is a string type, it returns 1
+        """
+        if type(Input) == list or type(Input) == tuple:
+            return 0
         else:
-            Logr.ErrorMsg('SetFastaFile() Error, filename is not a fasta file')
-    def CheckSettings(self):
-        if self.FastaFileName == None:
-            Logr.ErrorMsg('No Fasta File Set')
-            return False
-        if self.ReadSize == None:
-            Logr.ErrorMsg('No ReadSize Set; please set the  number  of  reads  or  mate  pairs  generate')
-            return False
-        return True
-    def RunPyllumina(self):
-        try:
-            #first we need to check if all parameters are set or not
-            if CheckSettings()==True:
-                continue
-            else:
-                Logr.ErrorMsg('RunPyllumina failed;  Settings were not set')
-        finally:
-            #Close files
-            self.ErrorLog.close()
-            self.OutputLog.close()
-            self.InputLog.close()
-            
-    def __init__(self):
-        self.INIT_TIME          = self.GetTimeStamp()            #INIT_TIME must come first
-        self.Curpath            = os.path.abspath(os.curdir)
-        self.Curpath            += '/'
-        self.Logr               = Logger()
-        self.ErrorLog           = Logr.CreateLog('Error.Log')     
-        self.OutputLog          = Logr.CreateLog('Output.Log')   
-        self.InputLog           = Logr.CreateLog('Input.Log')
-        Logr.ErrorLog           = self.ErrorLog
-        Logr.InputLog           = self.InputLog
-        Logr.OutputLog          = self.OutputLog
-        self.Metasim            = Metasimian(ErrorLog,OutputLog,InputLog)
-        self.Velvet             = RedVelvet(ErrorLog,OutputLog,InputLog)
+            return 1 
+    def SetSequenceLength(self,FSequence):
+        """
+        Input: FastaSequence object or FastaSequence array
+        Output: Sequence Length int or int array
+        """
+        if type(Input) == list or type(Input) == tuple:
+            self.SequenceLength = [len(i.seq) for i in FSequence]
+        else:
+            self.SequenceLength = len(FSequence.seq)
+    def __init__(self,Fasta_FileName,ExpCov,KMER,ErrorModel):
+        if self.FastaFileInputChecker(Fasta_FileName)==1:#Make sure this checks how many sequences we have; if more than one break it up into several files for metasim to read
+            self.FastaSequence = fasta_read(Fasta_FileName)
+        else:
+            self.FastaSequence = [fasta_read(i) for i in Fasta_FileName]
+        self.SetSequenceLength(self.FastaSequence)
+        self.FastaFileName = Fasta_FileName
+        self.ExpectedCoverage = ExpCov
+        self.KmerLength = KMER
+        self.MetaSimPrimary = MetaSimPrimaryConfig()
+        self.MetaSimPrimary.Model = ErrorModel
+        self.MetaSimSimulator = MetaSimSimulatorConfig()
+        self.MetaSym = Metasimian(self.MetaSimPrimary,self.MetaSimSimulator)
         
-        #self.FastaFile          = None
-        self.FastaFileName      = None
-        self.ReadSize           = None
-        self.MetaSimCommands    = []
+        #Expected Covereage -> Velvet
+        #MinCutoff->Velvet
+        #PairLength -> MetaSim->PrimaryConf

@@ -1,7 +1,6 @@
 from subprocess import call
-
+import os
 class RedVelvet:
-''' This class acts as a tool used by Pyllumina to use the velvet DNA assembler'''
     def MakeDirectory(self,ArgsIn):
         ArgsIn_Size = len(ArgsIn)
         Temp = ''
@@ -33,21 +32,21 @@ class RedVelvet:
                 break
         return N50
     def SetKMERRange(self,MinKMER,MaxKMER):
-        KmerRange = [i for i in range(MinKMER,MaxKMER + 1,1)]
+        self.KmerRange = [i for i in range(MinKMER,MaxKMER + 1,1)]
     def SetExpectedCoverageRange(self,MinExpectedCoverage, MaxExpectedCoverage):
-        ExpectedCoverageRange = [i for i in range(MinExpectedCoverage,MaxExpectedCoverage + 1,1)]
+        self.ExpectedCoverageRange = [i for i in range(MinExpectedCoverage,MaxExpectedCoverage + 1,1)]
     def SetCoverageCutoffRange(self,MinCoverageCutoffRange,MaxCoverageCutoffRange):
-        CoverageCutoffRange = [i for i in range(MinCoverageCutoffRange,MaxCoverageCutoffRange + 1,1)]
+        self.CoverageCutoffRange = [i for i in range(MinCoverageCutoffRange,MaxCoverageCutoffRange + 1,1)]
     def SetMinContigLengthRange(self,MinMinContigLength, MaxMinContigLength):
-        MinContigLengthRange = [i for i in range(MinMinContigLength, MaxMinContigLength + 1, 1)]
+        self.MinContigLengthRange = [i for i in range(MinMinContigLength, MaxMinContigLength + 1, 1)]
     def SetPairedEndRange(self,MinPairedEndRange,MaxPairedEndRange):
-        PairedEndRange = [i for i in range(MinPairedEndRange,MaxPairedEndRange + 1, 1)]
+        self.PairedEndRange = [i for i in range(MinPairedEndRange,MaxPairedEndRange + 1, 1)]
     def __init__(self,ELog,OLog,ILog):
         self.Curpath = os.path.abspath(os.curdir)
         self.Curpath += '/'
         self.INIT_TIME = self.GetTimeStamp()            #INIT_TIME must come first
         self.ErrorLog = ELog     
-        self.OutputLog = Olog  
+        self.OutputLog = OLog  
         self.InputLog = ILog     
         self.KmerRange = None                           
         self.ExpectedCoverageRange = None               
